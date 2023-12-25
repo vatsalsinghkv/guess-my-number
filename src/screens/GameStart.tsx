@@ -6,7 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { Button, Title, Card } from '../components/ui';
+import { Button, Title, Card, ButtonGroup } from '../components/ui';
 import { ScreenType } from '../lib/utils/types';
 import { Colors } from '../lib/constants/colors';
 
@@ -38,7 +38,7 @@ export default function GameStart({ onScreenChange, num, onNumChange }: Props) {
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <Title>Guess my number</Title>
       <Card>
         <Text style={styles.instructionText}>Enter a number</Text>
@@ -52,26 +52,16 @@ export default function GameStart({ onScreenChange, num, onNumChange }: Props) {
           autoCapitalize='none' // For emails & password
           autoCorrect={false} // For emails & password
         />
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <Button onPress={confirmNumHandler}>Confirm</Button>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button onPress={resetNum}>Reset</Button>
-          </View>
-        </View>
+        <ButtonGroup>
+          <Button onPress={confirmNumHandler}>Confirm</Button>
+          <Button onPress={resetNum}>Reset</Button>
+        </ButtonGroup>
       </Card>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 24,
-    flex: 1,
-    width: '90%',
-  },
-
   input: {
     height: 50,
     fontSize: 36,
@@ -81,19 +71,12 @@ const styles = StyleSheet.create({
     color: Colors.accent,
     marginVertical: 8,
     fontWeight: 'bold',
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    // justifyContent: 'space-between',
-    marginTop: 10,
-    gap: 10,
-  },
-  buttonContainer: {
-    flex: 1,
+    fontFamily: 'open-sans-bold',
   },
   instructionText: {
     color: Colors.accent,
     fontWeight: 'bold',
+    fontFamily: 'open-sans-bold',
     fontSize: 22,
   },
 });

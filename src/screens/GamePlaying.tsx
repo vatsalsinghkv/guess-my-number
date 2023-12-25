@@ -1,9 +1,11 @@
-import { Alert, StyleSheet, Text, View } from 'react-native';
-import { Button, Title } from '../components/ui';
+import { Alert, StyleSheet, Text } from 'react-native';
 import { useEffect, useState } from 'react';
+import { Entypo } from '@expo/vector-icons';
+import { Button, ButtonGroup, Card, Title } from '../components/ui';
 import { generateRandomBetween } from '../lib/utils';
 import { NumContainer } from '../components/game';
 import { ScreenType } from '../lib/utils/types';
+import { Colors } from '../lib/constants/colors';
 
 let minBoundary = 1;
 let maxBoundary = 100;
@@ -25,7 +27,7 @@ export default function GamePlaying(this: any, { num, onScreenChange }: Props) {
   }, [currentGuess]);
 
   const guessNumberHandler = (direction: 'lower' | 'higher') => {
-    console.log(minBoundary, maxBoundary);
+    // console.log(minBoundary, maxBoundary);
     // Guard Clause
     if (
       (direction === 'lower' && currentGuess < num) ||
@@ -48,38 +50,33 @@ export default function GamePlaying(this: any, { num, onScreenChange }: Props) {
   };
 
   return (
-    <View>
+    <>
       <Title>Opponent's Guess</Title>
       <NumContainer>{currentGuess}</NumContainer>
-
-      <View>
+      <Card>
         <Text style={styles.text}>Higher or Lower?</Text>
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <Button onPress={guessNumberHandler.bind(this, 'higher')}>+</Button>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button onPress={guessNumberHandler.bind(this, 'lower')}>-</Button>
-          </View>
-        </View>
-      </View>
-    </View>
+        <ButtonGroup style={styles.group}>
+          <Button onPress={guessNumberHandler.bind(this, 'lower')}>
+            <Entypo name='minus' size={24} />
+          </Button>
+          <Button onPress={guessNumberHandler.bind(this, 'higher')}>
+            <Entypo name='plus' size={24} />
+          </Button>
+        </ButtonGroup>
+      </Card>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  buttonsContainer: {
-    flexDirection: 'row',
-    gap: 10,
-    justifyContent: 'center',
-    marginTop: 10,
-  },
-  buttonContainer: {
-    flex: 1,
-  },
   text: {
     textAlign: 'center',
-    color: '#fff',
-    fontSize: 20,
+    color: Colors.accent,
+    fontSize: 18,
+    fontFamily: 'open-sans',
+    fontWeight: 'bold',
+  },
+  group: {
+    marginTop: 10,
   },
 });

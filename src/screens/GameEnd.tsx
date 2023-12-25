@@ -1,5 +1,15 @@
-import { Text } from 'react-native';
+import { Button, Title } from '../components/ui';
+import { ScreenType } from '../lib/utils/types';
 
-export default function GameEnd() {
-  return <Text>GameEnd</Text>;
+type Props = {
+  onScreenChange: (value: ScreenType) => void;
+};
+
+export default function GameEnd({ onScreenChange }: Props) {
+  return (
+    <>
+      <Title>GameEnd</Title>
+      <Button onPress={() => onScreenChange('start')}>Play Again</Button>
+    </>
+  );
 }
