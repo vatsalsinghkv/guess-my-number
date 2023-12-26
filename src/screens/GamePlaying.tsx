@@ -1,14 +1,12 @@
-import { Alert, StyleSheet, Text } from 'react-native';
-import { useEffect, useState } from 'react';
-
 import { Entypo } from '@expo/vector-icons';
+import { useEffect, useState } from 'react';
+import { Alert, StyleSheet, Text } from 'react-native';
 
-import { Button, ButtonGroup, Card, Title } from '../components/ui';
 import { NumContainer } from '../components/game';
-
+import { Button, ButtonGroup, Card, Title } from '../components/ui';
+import { Colors } from '../lib/constants/colors';
 import { generateRandomBetween } from '../lib/utils';
 import { ScreenType } from '../lib/utils/types';
-import { Colors } from '../lib/constants/colors';
 
 let minBoundary = 1;
 let maxBoundary = 100;

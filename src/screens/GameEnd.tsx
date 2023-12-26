@@ -1,7 +1,8 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+
 import { Button, Title } from '../components/ui';
-import { ScreenType } from '../lib/utils/types';
 import { Colors } from '../lib/constants/colors';
+import { ScreenType } from '../lib/utils/types';
 
 type Props = {
   onScreenChange: (value: ScreenType) => void;

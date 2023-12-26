@@ -6,9 +6,9 @@ import {
   TextInput,
 } from 'react-native';
 
-import { Button, Title, Card, ButtonGroup } from '../components/ui';
-import { ScreenType } from '../lib/utils/types';
+import { Button, ButtonGroup, Card, Title } from '../components/ui';
 import { Colors } from '../lib/constants/colors';
+import { ScreenType } from '../lib/utils/types';
 
 type Props = {
   onScreenChange: (value: ScreenType) => void;

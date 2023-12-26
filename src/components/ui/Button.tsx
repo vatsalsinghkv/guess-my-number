@@ -8,6 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+
 import { Colors } from '../../lib/constants/colors';
 
 interface Props extends PressableProps {
