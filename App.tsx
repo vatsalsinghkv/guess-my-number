@@ -13,6 +13,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('start');
+  const [guesses, setGuesses] = useState<number[]>([]);
   const [num, setNum] = useState(0);
 
   const [fontsLoaded] = useFonts({
@@ -38,6 +39,16 @@ export default function App() {
     setCurrentScreen(screenType);
   };
 
+  const reset = () => {
+    setCurrentScreen('start');
+    setNum(0);
+    setGuesses([]);
+  };
+
+  const addGuess = (num: number) => {
+    setGuesses((prev) => [num, ...prev]);
+  };
+
   const screen =
     currentScreen === 'start' ? (
       <GameStart
@@ -46,9 +57,14 @@ export default function App() {
         onScreenChange={screenChangeHandler}
       />
     ) : currentScreen === 'playing' ? (
-      <GamePlaying num={num} onScreenChange={screenChangeHandler} />
+      <GamePlaying
+        num={num}
+        guesses={guesses}
+        onScreenChange={screenChangeHandler}
+        onGuess={addGuess}
+      />
     ) : (
-      <GameEnd onScreenChange={screenChangeHandler} num={num} />
+      <GameEnd guesses={guesses} onNewGame={reset} num={num} />
     );
 
   return (

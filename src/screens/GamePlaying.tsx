@@ -1,8 +1,8 @@
 import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
-import { NumContainer } from '../components/game';
+import { GuessList, NumContainer } from '../components/game';
 import { Button, ButtonGroup, Card, Title } from '../components/ui';
 import { Colors } from '../lib/constants/colors';
 import { generateRandomBetween } from '../lib/utils';
@@ -13,10 +13,15 @@ let maxBoundary = 100;
 
 type Props = {
   onScreenChange: (value: ScreenType) => void;
+  onGuess: (num: number) => void;
+  guesses: number[];
   num: number;
 };
 
-export default function GamePlaying(this: any, { num, onScreenChange }: Props) {
+export default function GamePlaying(
+  this: any,
+  { num, onScreenChange, onGuess, guesses }: Props
+) {
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, num)
   );
@@ -45,9 +50,10 @@ export default function GamePlaying(this: any, { num, onScreenChange }: Props) {
     } else {
       maxBoundary = currentGuess;
     }
-    setCurrentGuess(
-      generateRandomBetween(minBoundary, maxBoundary, currentGuess)
-    );
+
+    const guess = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
+    setCurrentGuess(guess);
+    onGuess(guess);
   };
 
   return (
@@ -65,6 +71,7 @@ export default function GamePlaying(this: any, { num, onScreenChange }: Props) {
           </Button>
         </ButtonGroup>
       </Card>
+      <GuessList guesses={guesses} />
     </>
   );
 }

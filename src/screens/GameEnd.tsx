@@ -2,14 +2,14 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { Button, Title } from '../components/ui';
 import { Colors } from '../lib/constants/colors';
-import { ScreenType } from '../lib/utils/types';
 
 type Props = {
-  onScreenChange: (value: ScreenType) => void;
+  onNewGame: () => void;
+  guesses: number[];
   num: number;
 };
 
-export default function GameEnd({ onScreenChange, num }: Props) {
+export default function GameEnd({ onNewGame, num, guesses }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.resultContainer}>
@@ -27,13 +27,13 @@ export default function GameEnd({ onScreenChange, num }: Props) {
         {/* Applying text styles on the parent text container also affects the child text containers. */}
         {/* But this doesn't happen when you apply text styles to view it doesn't affect the child text containers. */}
         <Text style={styles.textSummary}>
-          Your phone needed <Text style={styles.textHighlight}>{num}</Text>{' '}
-          rounds to guess the number{' '}
-          <Text style={styles.textHighlight}>{num}</Text>
+          Your phone needed{' '}
+          <Text style={styles.textHighlight}>{guesses.length}</Text> rounds to
+          guess the number <Text style={styles.textHighlight}>{num}</Text>
         </Text>
       </View>
 
-      <Button variant='primary' onPress={() => onScreenChange('start')}>
+      <Button variant='primary' onPress={onNewGame}>
         New Game
       </Button>
     </View>
