@@ -4,8 +4,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View,
 } from 'react-native';
+
 import { Button, Title, Card, ButtonGroup } from '../components/ui';
 import { ScreenType } from '../lib/utils/types';
 import { Colors } from '../lib/constants/colors';

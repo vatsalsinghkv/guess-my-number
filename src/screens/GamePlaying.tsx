@@ -1,9 +1,12 @@
 import { Alert, StyleSheet, Text } from 'react-native';
 import { useEffect, useState } from 'react';
+
 import { Entypo } from '@expo/vector-icons';
+
 import { Button, ButtonGroup, Card, Title } from '../components/ui';
-import { generateRandomBetween } from '../lib/utils';
 import { NumContainer } from '../components/game';
+
+import { generateRandomBetween } from '../lib/utils';
 import { ScreenType } from '../lib/utils/types';
 import { Colors } from '../lib/constants/colors';
 
