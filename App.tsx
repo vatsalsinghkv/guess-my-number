@@ -1,20 +1,18 @@
-import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native';
-import { useCallback, useState } from 'react';
-
-import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
+import { useCallback, useState } from 'react';
+import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native';
 
+import { Colors } from './src/lib/constants/colors';
 import { ScreenType } from './src/lib/utils/types';
 import { GameEnd, GamePlaying, GameStart } from './src/screens';
-import { Colors } from './src/lib/constants/colors';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('start');
-
   const [num, setNum] = useState(0);
 
   const [fontsLoaded] = useFonts({
@@ -50,7 +48,7 @@ export default function App() {
     ) : currentScreen === 'playing' ? (
       <GamePlaying num={num} onScreenChange={screenChangeHandler} />
     ) : (
-      <GameEnd onScreenChange={screenChangeHandler} />
+      <GameEnd onScreenChange={screenChangeHandler} num={num} />
     );
 
   return (
@@ -77,13 +75,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 24,
-    // backgroundColor: '#ddb52f',
+    // paddingTop: 24,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   contentContainer: {
-    marginHorizontal: 24,
     flex: 1,
     width: '90%',
   },
