@@ -14,11 +14,19 @@ import { Colors } from '../../lib/constants/colors';
 interface Props extends PressableProps {
   children: React.ReactNode;
   style?: ViewStyle | TextStyle;
+  fullWidth?: boolean;
+  variant?: 'primary' | 'secondary' | 'accent';
 }
 
-export default function Button({ children, style, ...props }: Props) {
+export default function Button({
+  children,
+  style,
+  fullWidth = false,
+  variant = 'accent',
+  ...props
+}: Props) {
   return (
-    <View style={styles.outerContainer}>
+    <View style={[styles.outerContainer, fullWidth && styles.full]}>
       <Pressable
         {...props}
         style={({ pressed }) =>
@@ -26,8 +34,16 @@ export default function Button({ children, style, ...props }: Props) {
         }
         // android_ripple={{ color: '#123fea' }}
       >
-        <View style={styles.container}>
-          <Text style={[styles.text, style]}>{children}</Text>
+        <View style={[styles.container, styles[variant]]}>
+          <Text
+            style={[
+              styles.text,
+              variant !== 'accent' && styles.textWhite,
+              style,
+            ]}
+          >
+            {children}
+          </Text>
         </View>
       </Pressable>
     </View>
@@ -36,15 +52,24 @@ export default function Button({ children, style, ...props }: Props) {
 
 const styles = StyleSheet.create({
   outerContainer: {
-    flex: 1,
     marginTop: 5,
   },
+  full: { flex: 1 },
   container: {
     paddingVertical: 8,
     elevation: 2,
     paddingHorizontal: 16,
-    backgroundColor: Colors.accent,
     borderRadius: 28,
+  },
+  // Variants
+  accent: {
+    backgroundColor: Colors.accent,
+  },
+  primary: {
+    backgroundColor: Colors.primary[400],
+  },
+  secondary: {
+    backgroundColor: Colors.primary[400],
   },
   buttonOuter: {},
   text: {
@@ -52,6 +77,7 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     fontSize: 18,
   },
+  textWhite: { color: '#fff' },
   pressable: {
     opacity: 0.75,
   },

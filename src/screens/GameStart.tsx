@@ -53,8 +53,12 @@ export default function GameStart({ onScreenChange, num, onNumChange }: Props) {
           autoCorrect={false} // For emails & password
         />
         <ButtonGroup>
-          <Button onPress={confirmNumHandler}>Confirm</Button>
-          <Button onPress={resetNum}>Reset</Button>
+          <Button onPress={confirmNumHandler} fullWidth>
+            Confirm
+          </Button>
+          <Button onPress={resetNum} fullWidth>
+            Reset
+          </Button>
         </ButtonGroup>
       </Card>
     </>

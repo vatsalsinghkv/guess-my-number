@@ -57,10 +57,10 @@ export default function GamePlaying(this: any, { num, onScreenChange }: Props) {
       <Card>
         <Text style={styles.text}>Higher or Lower?</Text>
         <ButtonGroup style={styles.group}>
-          <Button onPress={guessNumberHandler.bind(this, 'lower')}>
+          <Button fullWidth onPress={guessNumberHandler.bind(this, 'lower')}>
             <Entypo name='minus' size={24} />
           </Button>
-          <Button onPress={guessNumberHandler.bind(this, 'higher')}>
+          <Button fullWidth onPress={guessNumberHandler.bind(this, 'higher')}>
             <Entypo name='plus' size={24} />
           </Button>
         </ButtonGroup>
