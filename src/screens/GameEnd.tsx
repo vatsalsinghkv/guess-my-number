@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   },
   center: { alignItems: 'center' },
   imgContainer: {
-    height: 300,
-    width: 300,
+    height: 250,
+    width: 250,
     borderRadius: 150,
     borderColor: Colors.primary[500],
     borderWidth: 1,

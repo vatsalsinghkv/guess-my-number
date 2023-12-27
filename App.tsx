@@ -8,7 +8,7 @@ import { Colors } from './src/lib/constants/colors';
 import { ScreenType } from './src/lib/utils/types';
 import { GameEnd, GamePlaying, GameStart } from './src/screens';
 
-// Keep the splash screen visible while we fetch resources
+// Keep the splash screen visible while fonts loaded
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -22,9 +22,7 @@ export default function App() {
   });
 
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
+    fontsLoaded && (await SplashScreen.hideAsync());
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
@@ -98,6 +96,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     width: '90%',
+    paddingVertical: 16,
   },
   full: {
     flex: 1,

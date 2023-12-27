@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from 'react-native';
+import { Dimensions, StyleSheet, Text } from 'react-native';
 
 type Props = {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
-    padding: 12,
+    padding: Dimensions.get('window').width <= 375 ? 10 : 12,
     borderWidth: 2,
     borderColor: '#fff',
   },

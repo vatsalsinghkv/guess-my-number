@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 
 import { Colors } from '../../lib/constants/colors';
 
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 8,
     borderColor: Colors.accent,
-    padding: 24,
+    padding: Dimensions.get('window').width <= 375 ? 18 : 24,
     // width: 150,
     marginTop: 24,
   },

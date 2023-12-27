@@ -1,5 +1,5 @@
-import React from 'react';
 import {
+  Dimensions,
   Pressable,
   PressableProps,
   StyleSheet,
@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
   },
   full: { flex: 1 },
   container: {
-    paddingVertical: 8,
+    paddingVertical: Dimensions.get('window').width <= 375 ? 6 : 8,
+    paddingHorizontal: Dimensions.get('window').width <= 375 ? 12 : 16,
     elevation: 2,
-    paddingHorizontal: 16,
     borderRadius: 28,
   },
   // Variants
@@ -77,7 +77,12 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     fontSize: 18,
   },
-  textWhite: { color: '#fff' },
+  textWhite: {
+    color: '#fff',
+    fontFamily: 'open-sans',
+    fontSize: 18,
+    paddingVertical: 3,
+  },
   pressable: {
     opacity: 0.75,
   },
