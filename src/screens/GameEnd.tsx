@@ -1,4 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 
 import { Button, Title } from '../components/ui';
 import { Colors } from '../lib/constants/colors';
@@ -10,15 +16,29 @@ type Props = {
 };
 
 export default function GameEnd({ onNewGame, num, guesses }: Props) {
+  const { height } = useWindowDimensions();
+
+  const { imgContainer } = StyleSheet.create({
+    imgContainer: {
+      height: height > 450 ? 250 : 120,
+      width: height > 450 ? 250 : 120,
+      borderRadius: 150,
+      borderColor: Colors.primary[500],
+      borderWidth: 1,
+      overflow: 'hidden',
+      marginHorizontal: 'auto',
+    },
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.resultContainer}>
         <Title>Game Over!</Title>
 
         <View style={styles.center}>
-          <View style={styles.imgContainer}>
+          <View style={imgContainer}>
             <Image
-              style={styles.imgContainer}
+              style={imgContainer}
               source={require('../assets/success.png')}
             />
           </View>
@@ -44,20 +64,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    gap: 20,
   },
   resultContainer: {
     gap: 36,
   },
   center: { alignItems: 'center' },
-  imgContainer: {
-    height: 250,
-    width: 250,
-    borderRadius: 150,
-    borderColor: Colors.primary[500],
-    borderWidth: 1,
-    overflow: 'hidden',
-    marginHorizontal: 'auto',
-  },
   img: {
     height: '100%',
     width: '100%',

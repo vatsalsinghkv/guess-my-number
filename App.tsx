@@ -1,8 +1,15 @@
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useCallback, useState } from 'react';
-import { ImageBackground, SafeAreaView, StyleSheet, View } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import { Colors } from './src/lib/constants/colors';
 import { ScreenType } from './src/lib/utils/types';
@@ -66,23 +73,32 @@ export default function App() {
     );
 
   return (
-    <LinearGradient
-      colors={[Colors.primary[400], Colors.accent]}
-      style={styles.full}
-    >
-      <ImageBackground
-        source={require('./src/assets/dice.jpeg')}
-        resizeMode='cover'
+    <>
+      {/* Statusbar light would make the text color to white on the status bar */}
+      <StatusBar style='light' />
+      <LinearGradient
+        colors={[Colors.primary[400], Colors.accent]}
         style={styles.full}
-        imageStyle={styles.bgImg}
       >
-        <SafeAreaView style={styles.container}>
-          <View onLayout={onLayoutRootView} style={styles.contentContainer}>
-            {screen}
-          </View>
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require('./src/assets/dice.jpeg')}
+          resizeMode='cover'
+          style={styles.full}
+          imageStyle={styles.bgImg}
+        >
+          <SafeAreaView style={styles.container}>
+            <ScrollView
+              contentContainerStyle={{ flexGrow: 1 }}
+              keyboardShouldPersistTaps='handled'
+              onLayout={onLayoutRootView}
+              style={styles.contentContainer}
+            >
+              {screen}
+            </ScrollView>
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 

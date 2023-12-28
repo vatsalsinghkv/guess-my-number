@@ -1,6 +1,7 @@
 import {
   Alert,
   GestureResponderEvent,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
